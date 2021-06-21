@@ -155,7 +155,7 @@ module Kramdown
         img_dirs = @options.fetch(:image_directories, []) + ["."]
         path_or_url = img.attr["src"]
         begin
-          image_obj, image_info = @pdf.build_image_object(open(path_or_url))
+          image_obj, image_info = @pdf.build_image_object(URI.open(path_or_url))
         rescue StandardError
           raise if img_dirs.empty?
           path_or_url = File.join(img_dirs.shift, img.attr["src"])
